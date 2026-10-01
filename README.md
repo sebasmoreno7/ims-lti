@@ -1,6 +1,24 @@
 # IMS LTI
 
-[![Build Status](https://travis-ci.org/instructure/ims-lti.svg?branch=2.1.x)](https://travis-ci.org/instructure/ims-lti)
+This repository is a fork of Instructure's `ims-lti` library. Copyright,
+authors, original homepage and the MIT license remain attributed to Instructure.
+The fork has not been published as a separate RubyGem.
+
+## Fork maintenance
+
+The fork requires Ruby 3.3 or newer; the development bundle is tested with
+Ruby 3.4.2. Runtime dependencies now
+require the patched `json-jwt` 1.15.3.1 line (CVE-2023-51774), along with
+current compatible XML and URI libraries. `faraday_middleware` still uses
+Faraday 1; migrating OAuth-signed registration requests to Faraday 2 needs
+protocol-level signature tests. A clean advisory scan does not cover every
+protocol or application security requirement.
+
+Run `bundle install`, `bundle exec rspec`, and `bundle-audit update` followed
+by `bundle-audit check` to verify the development bundle. The application using
+this library must separately reject reused OAuth nonces and expired
+timestamps, as the launch example below illustrates. The library does not
+provide a nonce store.
 
 LTI ruby implementation
 

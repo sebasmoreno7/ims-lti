@@ -96,7 +96,7 @@ module IMS::LTI::Models
       begin
         data = JSON.parse(json)
       rescue
-        data = JSON.parse(URI.unescape(json))
+        data = JSON.parse(URI::DEFAULT_PARSER.unescape(json))
       end
 
       if data.is_a? Array
