@@ -46,7 +46,7 @@ module IMS::LTI::Services
           sub: sub,
           aud: aud.to_s,
           iat: Time.now.to_i,
-          exp: 1.minute.from_now,
+          exp: Time.now + 60,
           jti: SecureRandom.uuid
         )
         assertion.merge!(@additional_claims)
